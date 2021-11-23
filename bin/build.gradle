@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    reports {
+        junitXml.enabled = true
+        html.enabled = true
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.destination file("${buildDir}/reports/html/jacoco")
+        xml.destination file("${buildDir}/reports/xml/jacoco")
+        csv.destination file("${buildDir}/reports/csv/jacoco")
+    }
+}
+
+dependencies {
+  testImplementation 'junit:junit:4.12'
+}
+
+mainClassName = 'example.Main'
